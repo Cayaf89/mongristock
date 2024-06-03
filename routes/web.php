@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\PageController;
+use App\Models\Page;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,6 +16,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return redirect('/home');
+    /** @var Page $homePage */
+    $homePage = Page::where('is_homepage', true)->first();
+    return redirect('/' . $homePage->slug);
 });
 Route::get('/{page}', [PageController::class, 'index'])->name('page_index');

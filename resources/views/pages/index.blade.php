@@ -1,11 +1,12 @@
 @php
     /* @var \App\Models\Page $page */
 @endphp
+@extends('layouts.base')
 
-<x-base-layout title="{{ $page->title }}" wide="true">
-    <x-flexible-hero :page="$page" />
+@section('content')
+    <x-flexible-hero :page="$page"/>
 
-    <div class="prose content">
-        <x-flexible-content-blocks :page="$page"/>
+    <div class="prose md:!max-w-5xl mx-auto mt-12">
+        {!! tiptap_converter()->asHTML($page->content) !!}
     </div>
-</x-base-layout>
+@endsection

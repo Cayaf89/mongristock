@@ -24,10 +24,9 @@ use Statikbe\FilamentFlexibleContentBlocks\Models\Contracts\HasPageAttributes;
 use Statikbe\FilamentFlexibleContentBlocks\Models\Contracts\HasSEOAttributes;
 use Statikbe\FilamentFlexibleContentBlocks\Models\Contracts\Linkable;
 
-class Page extends Model implements HasContentBlocks, HasHeroImageAttributes, HasIntroAttribute, HasMedia, HasMediaAttributes, HasOverviewAttributes, HasPageAttributes, HasSEOAttributes, Linkable, HasCode
+class Page extends Model implements HasHeroImageAttributes, HasIntroAttribute, HasMedia, HasMediaAttributes, HasOverviewAttributes, HasPageAttributes, HasSEOAttributes, Linkable, HasCode
 {
     use HasAuthorAttributeTrait;
-    use HasDefaultContentBlocksTrait;
     use HasFactory;
     use HasHeroImageAttributesTrait;
     use HasIntroAttributeTrait;
@@ -37,13 +36,20 @@ class Page extends Model implements HasContentBlocks, HasHeroImageAttributes, Ha
     use HasSlugAttributeTrait;
     use HasCodeTrait;
 
-    public function getViewUrl(?string $locale = null): string
-    {
+    protected $fillable = [
+        'name',
+        'is_homepage',
+    ];
+
+    protected $casts = [
+        'content' => 'array'
+    ];
+
+    public function getViewUrl(?string $locale = null): string {
         return route('page_index', ['page' => $this]);
     }
 
-    public function getPreviewUrl(?string $locale = null): string
-    {
+    public function getPreviewUrl(?string $locale = null): string {
         return $this->getViewUrl($locale);
     }
 }
