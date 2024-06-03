@@ -11,7 +11,7 @@
         @vite(['resources/css/filament/admin/theme.css', 'resources/js/app.js'])
 
     </head>
-    <body class="font-sans antialiased">
+    <body class="antialiased">
         <div class="min-h-screen bg-gray-100">
             <!-- Page Content -->
             <main>

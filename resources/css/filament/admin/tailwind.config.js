@@ -13,6 +13,9 @@ export default {
             screens: {
                 'touch': { 'max': '767px' },
             },
+            boxShadow: {
+                'intro': '0 0 20px 25px black',
+            }
         }
     }
 }

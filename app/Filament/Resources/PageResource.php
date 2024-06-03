@@ -83,6 +83,7 @@ class PageResource extends Resource
                                             ->label('Auteur'),
                                         DatePicker::make('publishing_begins_at')
                                             ->label('Date de publication')
+                                            ->native(false)
                                             ->seconds(false)
                                             ->displayFormat('d/m/Y'),
                                     ]),
