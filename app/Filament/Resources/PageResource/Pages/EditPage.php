@@ -24,8 +24,10 @@ class EditPage extends EditRecord
     protected function mutateFormDataBeforeSave(array $data): array {
         if (!empty($data['is_homepage'])) {
             $oldHomepage = Page::where('is_homepage', true)->first();
-            $oldHomepage->is_homepage = false;
-            $oldHomepage->save();
+            if (!empty($oldHomepage)) {
+                $oldHomepage->is_homepage = false;
+                $oldHomepage->save();
+            }
         }
         return $data;
     }

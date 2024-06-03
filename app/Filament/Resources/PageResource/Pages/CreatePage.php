@@ -22,8 +22,10 @@ class CreatePage extends CreateRecord
     protected function mutateFormDataBeforeCreate(array $data): array {
         if (!empty($data['is_homepage'])) {
             $oldHomepage = Page::where('is_homepage', true)->first();
-            $oldHomepage->is_homepage = false;
-            $oldHomepage->save();
+            if (!empty($oldHomepage)) {
+                $oldHomepage->is_homepage = false;
+                $oldHomepage->save();
+            }
         }
         $data['slug'] = Str::slug($data['name']);
         return $data;
